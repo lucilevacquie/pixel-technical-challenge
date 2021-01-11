@@ -1,17 +1,19 @@
 import React from "react"
 import styled from "styled-components"
 
-const Container = styled.div``;
+const Container = styled.div`
+    display:flex;
+`;
 
 const DeleteButton = styled.button``;
 
 const Text = styled.div``;
 
-const ItemMyList = () => {
+const ItemMyList = ({item, onDelete}) => {
     return(
         <Container>
-            <DeleteButton>X</DeleteButton>
-            <Text></Text>
+            <DeleteButton onClick={onDelete}>X</DeleteButton>
+            <Text>{item.name}</Text>
         </Container>
     )
 }

@@ -12,42 +12,56 @@ const DataList = styled.div``;
 
 const ListContainer = styled.div``;
 
-const List = styled.ul``;
+const List = styled.div``;
 
 
 const dataUrl = "https://8ee41f94-d4f4-439d-8233-e573edca74ff.mock.pstmn.io/users"
 
 const App = () => {
 
-  const [display, setDisplay] = useState([])
+  const [data, setData] = useState([])
+  const [selectedContact, setSelectedContact] = useState([])
 
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(dataUrl)
       const {data} = await response.json()
-      setDisplay(data)
+      setData(data)
     }
     fetchData()
   },[])
 
   useEffect(() => {
-  }, [display])
+  }, [data])
   
+  
+  const getContactSelected = (item) => {
+    const myList = [...selectedContact, item]
+    setSelectedContact(myList)
+  }
+
+  const deleteContact = (selectedContact, item) => {
+    
+  }
 
 
   return (
     <Container>
-      <DataListContainer>
+      <DataListContainer>Contact
         <DataList>
-          {display.map(item => {
+          {data.map(item => {
             return(
-              <ItemData item={item}/>
+              <ItemData item={item} onChecked={getContactSelected}/>
             )
           })}
         </DataList>
       </DataListContainer>
-      <ListContainer>
-        <List/>
+      <ListContainer>Selected contact
+        <List>
+          {selectedContact.map(item =>
+            <ItemMyList item={item} onDelete={deleteContact}/>
+          )}
+        </List>
       </ListContainer>
     </Container>
   )

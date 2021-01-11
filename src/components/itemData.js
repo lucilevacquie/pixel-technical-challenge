@@ -13,10 +13,10 @@ const Name = styled.div``;
 
 const Email = styled.div``;
 
-const ItemData = ({item}) => {
+const ItemData = ({item, onChecked}) => {
     return(
         <Container>
-            <Checkbox type="checkbox"></Checkbox>
+            <Checkbox type="checkbox" name="contact" onChange={() => onChecked(item)}></Checkbox>
             <ItemWrapper>            
                 <Name>{item.name}</Name>
                 <Email>{item.email}</Email>
