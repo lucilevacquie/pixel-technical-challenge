@@ -1,5 +1,6 @@
 import React from "react"
 import styled from "styled-components"
+import HighlightOffTwoToneIcon from '@material-ui/icons/HighlightOffTwoTone';
 
 const Container = styled.div`
     display:flex;
@@ -9,6 +10,8 @@ const Container = styled.div`
 
 const DeleteButton = styled.button`
     margin: 0.5rem;
+    border: none;
+    background-color: transparent;
 `;
 
 const Text = styled.div``;
@@ -16,7 +19,9 @@ const Text = styled.div``;
 const ItemMyList = ({item, onDelete}) => {
     return(
         <Container>
-            <DeleteButton onClick={e => onDelete(item)}>X</DeleteButton>
+            <DeleteButton onClick={e => onDelete(item)}>
+                <HighlightOffTwoToneIcon/>
+            </DeleteButton>
             <Text>{item.name}</Text>
         </Container>
     )

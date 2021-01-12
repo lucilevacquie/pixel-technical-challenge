@@ -1,28 +1,28 @@
 import React from "react"
 import styled from "styled-components"
-import Arrow from "../assets/arrow-up.png"
+import ArrowDropDownCircleTwoToneIcon from '@material-ui/icons/ArrowDropDownCircleTwoTone';
 
 const Container = styled.div``;
 
 const Button = styled.button`
+    border: none;
+    background-color: transparent;
 `;
 
-const ArrowUp = styled.img`
-    width: 20px;
+const ArrowIcon = styled(ArrowDropDownCircleTwoToneIcon)`
+    transform:${(props) => props.rotate};
 `;
 
-const ArrowDown = styled.img`
-    width: 20px;
-    transform: rotate(180deg);
-`;
 
 const SortList = ({sortTheList, clicked}) => {
     return(
         <Container>
+            <Button onClick={sortTheList}>
             {clicked ? 
-            (<Button onClick={sortTheList}><ArrowUp src={Arrow} alt="ascending"/></Button>):
-            (<Button onClick={sortTheList}><ArrowDown src={Arrow} alt="descending"/></Button>)
+                <ArrowIcon rotate="rotate(180deg)" alt="ascending"/> :
+                <ArrowIcon alt="descending"/>
             }
+            </Button>
         </Container>
     )
 }

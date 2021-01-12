@@ -3,12 +3,15 @@ import styled from "styled-components"
 import './App.css';
 import ItemData from "./components/itemData"
 import ItemMyList from "./components/itemMyList"
-import SortList from "./components/sortList"
 import LoadingIcon from "./assets/loading-icon.gif"
+import Tools from "./components/tools"
 
 const Container = styled.div`
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(2, 335px);
+  grid-gap: 1.5rem;
+  font-family: 'Quicksand', sans-serif;
+  margin: 1.5rem;
 `;
 
 const Loading = styled.img``;
@@ -16,7 +19,13 @@ const Loading = styled.img``;
 const ListContainer = styled.div`
   box-sizing: border-box;
   border: solid black 2px;
-  margin: 2rem;
+  background-color:${(props) => props.color};
+`;
+
+const ListHeader = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 `;
 
 const Title = styled.h2`
@@ -62,6 +71,11 @@ const App = () => {
     setSelectedContact(updatedList)
   }
 
+  const deleteAll = () => {
+    const updateList = []
+    setSelectedContact(updateList)
+  }
+
   const sortedContact = () => {
     const updatedList = selectedContact.sort((a, b) => {
       const nameA = a.name.toUpperCase()
@@ -82,28 +96,30 @@ const App = () => {
       {isLoading? 
         (<Loading src={LoadingIcon}/>) :
         (
-          <ListContainer>
+          <ListContainer color="cornflowerblue">
             <Title>Contacts</Title>
             <List>
               {data.map(item => {
                 return(
                   <ItemData key={item.name} item={item} onChecked={getContactSelected}/>
-                )
-              })}
+                  )
+                })}
             </List>
           </ListContainer>
           
-        )
-      }
+          )
+        }
       {selectedContact.length > 0 &&
-        <ListContainer>
-          <Title>Selected contact</Title>
+        <ListContainer color="aliceblue">
+          <ListHeader>
+            <Title>Selected contact</Title>
+            <Tools onClear={deleteAll} sortTheList={sortedContact} clicked={clicked}/>
+          </ListHeader>
           <List>
             {selectedContact.map(item =>
               <ItemMyList key={item.name} item={item} onDelete={deleteContact}/>
             )}
           </List>
-          <SortList sortTheList={sortedContact} clicked={clicked}/>
         </ListContainer>
       }
     </Container>
