@@ -1,6 +1,5 @@
 import React from "react"
 import styled from "styled-components"
-import AddCircleTwoToneIcon from '@material-ui/icons/AddCircleTwoTone';
 
 const Container = styled.div`
     display: flex;
@@ -13,24 +12,20 @@ const Button = styled.button`
     background-color: transparent;
 `;
 
-const ItemWrapper = styled.div``;
-
-const Name = styled.div``;
-
 const Email = styled.div`
     color: blue;
 `;
 
-const ItemData = ({item, onChecked}) => {
+const ItemData = ({item, onClickButton, buttonIcon}) => {
     return(
         <Container>
-            <Button name="contact" onClick={() => onChecked(item)}>
-                <AddCircleTwoToneIcon/>
+            <Button name="contact" onClick={() => onClickButton(item)}>
+                {buttonIcon}
             </Button>
-            <ItemWrapper>            
-                <Name>{item.name}</Name>
+            <div>            
+                <div>{item.name}</div>
                 <Email>{item.email}</Email>
-            </ItemWrapper>
+            </div>
         </Container>
     )
 }

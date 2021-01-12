@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from "react"
 import styled from "styled-components"
 import './App.css';
-import ItemData from "./components/itemData"
-import ItemMyList from "./components/itemMyList"
+import ListComponent from "./components/list"
 import LoadingIcon from "./assets/loading-icon.gif"
 import Tools from "./components/tools"
+import AddCircleTwoToneIcon from '@material-ui/icons/AddCircleTwoTone'
+import HighlightOffTwoToneIcon from '@material-ui/icons/HighlightOffTwoTone'
 
 const Container = styled.div`
   display: grid;
@@ -13,27 +14,6 @@ const Container = styled.div`
   font-family: 'Quicksand', sans-serif;
   margin: 1.5rem;
 `;
-
-const Loading = styled.img``;
-
-const ListContainer = styled.div`
-  box-sizing: border-box;
-  border: solid black 2px;
-  background-color:${(props) => props.color};
-`;
-
-const ListHeader = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-`;
-
-const Title = styled.h2`
-  padding-left: 15px;
-`;
-
-const List = styled.div``;
-
 
 const dataUrl = "https://8ee41f94-d4f4-439d-8233-e573edca74ff.mock.pstmn.io/users"
 
@@ -94,33 +74,29 @@ const App = () => {
   return (
     <Container>
       {isLoading? 
-        (<Loading src={LoadingIcon}/>) :
+        (<img src={LoadingIcon} alt="Loading"/>) :
         (
-          <ListContainer color="cornflowerblue">
-            <Title>Contacts</Title>
-            <List>
-              {data.map(item => {
-                return(
-                  <ItemData key={item.name} item={item} onChecked={getContactSelected}/>
-                  )
-                })}
-            </List>
-          </ListContainer>
-          
+          <ListComponent 
+            title="Contacts" 
+            color="cornflowerblue" 
+            data={data} 
+            onClickButton={getContactSelected}
+            buttonIcon={<AddCircleTwoToneIcon/>}
+          />
           )
         }
+
       {selectedContact.length > 0 &&
-        <ListContainer color="aliceblue">
-          <ListHeader>
-            <Title>Selected contact</Title>
+        <ListComponent 
+          title="Selected contacts" 
+          color="aliceblue" 
+          data={selectedContact} 
+          onClickButton={deleteContact}
+          buttonIcon={<HighlightOffTwoToneIcon/>}
+          toolbar={
             <Tools onClear={deleteAll} sortTheList={sortedContact} clicked={clicked}/>
-          </ListHeader>
-          <List>
-            {selectedContact.map(item =>
-              <ItemMyList key={item.name} item={item} onDelete={deleteContact}/>
-            )}
-          </List>
-        </ListContainer>
+          }
+        />
       }
     </Container>
   )
