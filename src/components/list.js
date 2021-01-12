@@ -18,8 +18,6 @@ const Title = styled.h2`
   padding-left: 15px;
 `;
 
-const List = styled.div``;
-
 const ListComponent = ({title, toolbar, data, onClickButton, buttonIcon, color}) => {
     return(
         <Container color={color}>
@@ -27,13 +25,13 @@ const ListComponent = ({title, toolbar, data, onClickButton, buttonIcon, color})
                 <Title>{title}</Title>
                 {toolbar}
             </ListHeader>
-            <List>
+            <div>
             {data.map(item => {
                 return(
                   <ListItem key={item.name} item={item} onClickButton={onClickButton} buttonIcon={buttonIcon}/>
                   )
                 })}
-            </List>
+            </div>
         </Container>
     )
 }
