@@ -3,16 +3,20 @@ import styled from "styled-components"
 
 const Container = styled.div`
     display:flex;
+    margin: 0.5rem;
+    align-items: center;
 `;
 
-const DeleteButton = styled.button``;
+const DeleteButton = styled.button`
+    margin: 0.5rem;
+`;
 
 const Text = styled.div``;
 
 const ItemMyList = ({item, onDelete}) => {
     return(
         <Container>
-            <DeleteButton onClick={onDelete}>X</DeleteButton>
+            <DeleteButton onClick={e => onDelete(item)}>X</DeleteButton>
             <Text>{item.name}</Text>
         </Container>
     )

@@ -3,20 +3,25 @@ import styled from "styled-components"
 
 const Container = styled.div`
     display: flex;
+    margin: 0.5rem;
 `;
 
-const Checkbox = styled.input``;
+const Button = styled.button`
+    margin: 0.5rem;
+`;
 
 const ItemWrapper = styled.div``;
 
 const Name = styled.div``;
 
-const Email = styled.div``;
+const Email = styled.div`
+    color: blue;
+`;
 
 const ItemData = ({item, onChecked}) => {
     return(
         <Container>
-            <Checkbox type="checkbox" name="contact" onChange={() => onChecked(item)}></Checkbox>
+            <Button name="contact" onClick={() => onChecked(item)}>+</Button>
             <ItemWrapper>            
                 <Name>{item.name}</Name>
                 <Email>{item.email}</Email>
