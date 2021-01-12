@@ -12,15 +12,13 @@ const ClearAll = styled.button`
     background-color: transparent;
 `;
 
-const Tools = ({onClear, sortTheList, clicked}) => {
-    return (
-        <Container>
-            <SortOutTool sortTheList={sortTheList} clicked={clicked}/>
-            <ClearAll onClick={onClear}>
-                <DeleteTwoToneIcon/>
-            </ClearAll>
-        </Container>
-    )
-}
+const Tools = ({onClear, sortTheList, sortOrder}) => (
+    <Container>
+        <SortOutTool sortTheList={sortTheList} sortOrder={sortOrder}/>
+        <ClearAll onClick={onClear}>
+            <DeleteTwoToneIcon/>
+        </ClearAll>
+    </Container>
+)
 
 export default Tools;

@@ -11,17 +11,10 @@ const ArrowIcon = styled(ArrowDropDownCircleTwoToneIcon)`
     transform:${(props) => props.rotate};
 `;
 
-const SortList = ({sortTheList, sortOrder}) => {
-    return(
-        <>
-            <Button onClick={sortTheList}>
-            {sortOrder ? 
-                <ArrowIcon rotate="rotate(180deg)"/> :
-                <ArrowIcon/>
-            }
-            </Button>
-        </>
-    )
-}
+const SortList = ({sortTheList, sortOrder}) => (
+    <Button onClick={sortTheList}>
+        <ArrowIcon rotate={sortOrder ? "rotate(180deg)" : "rotate(0)"}/>
+    </Button>
+)
 
 export default SortList;
